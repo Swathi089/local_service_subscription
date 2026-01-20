@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Provider Dashboard - LocalServe</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>LocalServe</h2>
+                <p id="userName">Provider</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item active">
+                    <span>📊</span> Dashboard
+                </a>
+                <a href="service-requests.html" class="nav-item">
+                    <span>📋</span> Service Requests
+                </a>
+                <a href="manage-services.html" class="nav-item">
+                    <span>🔧</span> Manage Services
+                </a>
+                <a href="earnings.html" class="nav-item">
+                    <span>💰</span> Earnings
+                </a>
+                <a href="profile.html" class="nav-item">
+                    <span>👤</span> Profile
+                </a>
+                <a href="#" class="nav-item" id="logoutBtn">
+                    <span>🚪</span> Logout
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="content-header">
+                <h1>Dashboard</h1>
+                <div class="header-actions">
+                    <button class="btn-primary" onclick="location.href='manage-services.html'">Add New Service</button>
+                </div>
+            </header>
+
+            <div class="dashboard-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-content">
+                        <h3 id="activeClients">0</h3>
+                        <p>Active Clients</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">📅</div>
+                    <div class="stat-content">
+                        <h3 id="pendingRequests">0</h3>
+                        <p>Pending Requests</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-content">
+                        <h3 id="monthlyEarnings">$0</h3>
+                        <p>Monthly Earnings</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-content">
+                        <h3 id="averageRating">0.0</h3>
+                        <p>Average Rating</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Upcoming Appointments</h2>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Client</th>
+                                <th>Service</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="upcomingAppointmentsTable">
+                            <tr>
+                                <td colspan="6" class="no-data">No upcoming appointments</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Recent Reviews</h2>
+                <div id="recentReviews" class="reviews-list">
+                    <p class="no-data">No recent reviews</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/provider.js"></script>
+    <script src="../js/notifications.js"></script>
+</body>
+</html>

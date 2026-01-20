@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - LocalServe Admin</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>LocalServe Admin</h2>
+                <p id="userName">Administrator</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span>📊</span> Dashboard
+                </a>
+                <a href="manage-users.html" class="nav-item">
+                    <span>👥</span> Manage Users
+                </a>
+                <a href="manage-services.html" class="nav-item">
+                    <span>🔧</span> Manage Services
+                </a>
+                <a href="manage-payments.html" class="nav-item">
+                    <span>💳</span> Manage Payments
+                </a>
+                <a href="reports.html" class="nav-item active">
+                    <span>📈</span> Reports
+                </a>
+                <a href="#" class="nav-item" id="logoutBtn">
+                    <span>🚪</span> Logout
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="content-header">
+                <h1>Reports & Analytics</h1>
+                <div class="header-actions">
+                    <select id="reportPeriod">
+                        <option value="week">Last 7 Days</option>
+                        <option value="month" selected>Last 30 Days</option>
+                        <option value="quarter">Last 3 Months</option>
+                        <option value="year">Last Year</option>
+                        <option value="custom">Custom Range</option>
+                    </select>
+                    <button class="btn-primary" id="exportReportBtn">Export Report</button>
+                </div>
+            </header>
+
+            <!-- Key Metrics Overview -->
+            <div class="content-section">
+                <h2>Key Metrics Overview</h2>
+                <div class="dashboard-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-content">
+                            <h3 id="totalRevenue">$0</h3>
+                            <p>Total Revenue</p>
+                            <small style="color: var(--success-color);">↑ 12.5% from last period</small>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-content">
+                            <h3 id="newUsers">0</h3>
+                            <p>New Users</p>
+                            <small style="color: var(--success-color);">↑ 8.3% from last period</small>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">📋</div>
+                        <div class="stat-content">
+                            <h3 id="totalBookings">0</h3>
+                            <p>Total Bookings</p>
+                            <small style="color: var(--danger-color);">↓ 2.1% from last period</small>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-content">
+                            <h3 id="avgRating">0.0</h3>
+                            <p>Average Rating</p>
+                            <small style="color: var(--success-color);">↑ 0.2 from last period</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Revenue Chart -->
+            <div class="content-section">
+                <h2>Revenue Trends</h2>
+                <div class="chart-container" id="revenueChart" style="height: 300px; background: var(--bg-secondary); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                    <p style="color: var(--text-secondary);">📊 Revenue chart visualization would be rendered here using a charting library like Chart.js</p>
+                </div>
+            </div>
+
+            <!-- Service Category Performance -->
+            <div class="content-section">
+                <h2>Service Category Performance</h2>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Total Bookings</th>
+                                <th>Revenue</th>
+                                <th>Avg Rating</th>
+                                <th>Growth</th>
+                            </tr>
+                        </thead>
+                        <tbody id="categoryPerformanceTable">
+                            <tr>
+                                <td>Home Cleaning</td>
+                                <td>245</td>
+                                <td>$12,245.55</td>
+                                <td>⭐ 4.8</td>
+                                <td style="color: var(--success-color);">↑ 15.2%</td>
+                            </tr>
+                            <tr>
+                                <td>Plumbing</td>
+                                <td>189</td>
+                                <td>$16,991.11</td>
+                                <td>⭐ 4.9</td>
+                                <td style="color: var(--success-color);">↑ 8.7%</td>
+                            </tr>
+                            <tr>
+                                <td>Electrical</td>
+                                <td>134</td>
+                                <td>$9,372.66</td>
+                                <td>⭐ 4.7</td>
+                                <td style="color: var(--danger-color);">↓ 3.2%</td>
+                            </tr>
+                            <tr>
+                                <td>Gardening</td>
+                                <td>167</td>
+                                <td>$10,013.33</td>
+                                <td>⭐ 4.6</td>
+                                <td style="color: var(--success-color);">↑ 12.1%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Top Performing Providers -->
+            <div class="content-section">
+                <h2>Top Performing Providers</h2>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Provider</th>
+                                <th>Category</th>
+                                <th>Completed Jobs</th>
+                                <th>Revenue Generated</th>
+                                <th>Rating</th>
+                            </tr>
+                        </thead>
+                        <tbody id="topProvidersTable">
+                            <tr>
+                                <td>🥇</td>
+                                <td>Clean Pro Services</td>
+                                <td>Cleaning</td>
+                                <td>124</td>
+                                <td>$6,198.76</td>
+                                <td>⭐ 4.9</td>
+                            </tr>
+                            <tr>
+                                <td>🥈</td>
+                                <td>Fix It Fast</td>
+                                <td>Plumbing</td>
+                                <td>98</td>
+                                <td>$8,811.02</td>
+                                <td>⭐ 4.8</td>
+                            </tr>
+                            <tr>
+                                <td>🥉</td>
+                                <td>Bright Solutions</td>
+                                <td>Electrical</td>
+                                <td>87</td>
+                                <td>$6,086.13</td>
+                                <td>⭐ 4.7</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- User Growth Chart -->
+            <div class="content-section">
+                <h2>User Growth</h2>
+                <div class="chart-container" id="userGrowthChart" style="height: 300px; background: var(--bg-secondary); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                    <p style="color: var(--text-secondary);">📈 User growth chart would be rendered here</p>
+                </div>
+            </div>
+
+            <!-- Customer Satisfaction -->
+            <div class="content-section">
+                <h2>Customer Satisfaction Metrics</h2>
+                <div class="dashboard-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                    <div class="stat-card">
+                        <div class="stat-content">
+                            <h3>4.7</h3>
+                            <p>Overall Rating</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-content">
+                            <h3>892</h3>
+                            <p>Total Reviews</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-content">
+                            <h3>94%</h3>
+                            <p>Positive Reviews</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-content">
+                            <h3>89%</h3>
+                            <p>Customer Retention</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity Log -->
+            <div class="content-section">
+                <h2>Recent Activity</h2>
+                <div class="activity-list" id="recentActivityLog">
+                    <div class="activity-item">
+                        <strong>New User Registration</strong>
+                        <p>John Smith signed up as a customer</p>
+                        <span class="activity-time">2 minutes ago</span>
+                    </div>
+                    <div class="activity-item">
+                        <strong>Service Booking</strong>
+                        <p>Home Cleaning booked by Sarah Johnson</p>
+                        <span class="activity-time">15 minutes ago</span>
+                    </div>
+                    <div class="activity-item">
+                        <strong>Payment Received</strong>
+                        <p>$89.99 payment completed for Plumbing Service</p>
+                        <span class="activity-time">1 hour ago</span>
+                    </div>
+                    <div class="activity-item">
+                        <strong>New Review</strong>
+                        <p>5-star review for Clean Pro Services</p>
+                        <span class="activity-time">2 hours ago</span>
+                    </div>
+                    <div class="activity-item">
+                        <strong>Provider Payout</strong>
+                        <p>$1,234.56 paid to Fix It Fast</p>
+                        <span class="activity-time">3 hours ago</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Export Options -->
+            <div class="content-section">
+                <h2>Generate Custom Reports</h2>
+                <form id="customReportForm" class="profile-form">
+                    <div class="form-group">
+                        <label for="reportType">Report Type</label>
+                        <select id="reportType">
+                            <option value="revenue">Revenue Report</option>
+                            <option value="users">User Analytics</option>
+                            <option value="services">Service Performance</option>
+                            <option value="providers">Provider Performance</option>
+                            <option value="comprehensive">Comprehensive Report</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dateRange">Date Range</label>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <input type="date" id="startDate" placeholder="Start Date">
+                            <input type="date" id="endDate" placeholder="End Date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exportFormat">Export Format</label>
+                        <select id="exportFormat">
+                            <option value="pdf">PDF</option>
+                            <option value="excel">Excel (XLSX)</option>
+                            <option value="csv">CSV</option>
+                            <option value="json">JSON</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary">Generate Report</button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/admin.js"></script>
+    <script src="../js/notifications.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            loadReportsPage();
+            setupReportFilters();
+            setupCustomReportForm();
+        });
+
+        function loadReportsPage() {
+            // Mock statistics
+            document.getElementById('totalRevenue').textContent = '$48,622.66';
+            document.getElementById('newUsers').textContent = '127';
+            document.getElementById('totalBookings').textContent = '735';
+            document.getElementById('avgRating').textContent = '4.7';
+        }
+
+        function setupReportFilters() {
+            const reportPeriod = document.getElementById('reportPeriod');
+            const exportReportBtn = document.getElementById('exportReportBtn');
+
+            if (reportPeriod) {
+                reportPeriod.addEventListener('change', function() {
+                    if (this.value === 'custom') {
+                        // Show custom date range picker
+                        alert('Custom date range selection would be shown here');
+                    }
+                    loadReportsPage();
+                });
+            }
+
+            if (exportReportBtn) {
+                exportReportBtn.addEventListener('click', function() {
+                    window.showNotification('Report exported successfully!', 'success');
+                });
+            }
+        }
+
+        function setupCustomReportForm() {
+            const customReportForm = document.getElementById('customReportForm');
+            
+            if (customReportForm) {
+                customReportForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const reportType = document.getElementById('reportType').value;
+                    const exportFormat = document.getElementById('exportFormat').value;
+                    
+                    window.showNotification(`Generating ${reportType} report in ${exportFormat} format...`, 'info');
+                    
+                    setTimeout(() => {
+                        window.showNotification('Report generated successfully!', 'success');
+                    }, 2000);
+                });
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Requests - LocalServe</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>LocalServe</h2>
+                <p id="userName">Provider</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span>📊</span> Dashboard
+                </a>
+                <a href="service-requests.html" class="nav-item active">
+                    <span>📋</span> Service Requests
+                </a>
+                <a href="manage-services.html" class="nav-item">
+                    <span>🔧</span> Manage Services
+                </a>
+                <a href="earnings.html" class="nav-item">
+                    <span>💰</span> Earnings
+                </a>
+                <a href="profile.html" class="nav-item">
+                    <span>👤</span> Profile
+                </a>
+                <a href="#" class="nav-item" id="logoutBtn">
+                    <span>🚪</span> Logout
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="content-header">
+                <h1>Service Requests</h1>
+            </header>
+
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="pending">Pending</button>
+                <button class="tab-btn" data-tab="accepted">Accepted</button>
+                <button class="tab-btn" data-tab="completed">Completed</button>
+                <button class="tab-btn" data-tab="declined">Declined</button>
+            </div>
+
+            <div class="tab-content active" id="pending">
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Client</th>
+                                <th>Service</th>
+                                <th>Requested Date</th>
+                                <th>Location</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pendingRequestsTable">
+                            <!-- Pending requests will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-content" id="accepted">
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Client</th>
+                                <th>Service</th>
+                                <th>Scheduled Date</th>
+                                <th>Location</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="acceptedRequestsTable">
+                            <!-- Accepted requests will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-content" id="completed">
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Client</th>
+                                <th>Service</th>
+                                <th>Completed Date</th>
+                                <th>Rating</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="completedRequestsTable">
+                            <!-- Completed requests will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-content" id="declined">
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Client</th>
+                                <th>Service</th>
+                                <th>Requested Date</th>
+                                <th>Reason</th>
+                            </tr>
+                        </thead>
+                        <tbody id="declinedRequestsTable">
+                            <!-- Declined requests will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/provider.js"></script>
+    <script src="../js/notifications.js"></script>
+</body>
+</html>

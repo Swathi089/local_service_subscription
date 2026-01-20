@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Services - LocalServe</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>LocalServe</h2>
+                <p id="userName">Provider</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span>📊</span> Dashboard
+                </a>
+                <a href="service-requests.html" class="nav-item">
+                    <span>📋</span> Service Requests
+                </a>
+                <a href="manage-services.html" class="nav-item active">
+                    <span>🔧</span> Manage Services
+                </a>
+                <a href="earnings.html" class="nav-item">
+                    <span>💰</span> Earnings
+                </a>
+                <a href="profile.html" class="nav-item">
+                    <span>👤</span> Profile
+                </a>
+                <a href="#" class="nav-item" id="logoutBtn">
+                    <span>🚪</span> Logout
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="content-header">
+                <h1>Manage Services</h1>
+                <div class="header-actions">
+                    <button class="btn-primary" id="addServiceBtn">Add New Service</button>
+                </div>
+            </header>
+
+            <div class="services-list" id="servicesList">
+                <!-- Services will be loaded here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Service Modal -->
+    <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Add New Service</h2>
+            <form id="serviceForm" class="service-form">
+                <div class="form-group">
+                    <label for="serviceName">Service Name</label>
+                    <input type="text" id="serviceName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="serviceCategory">Category</label>
+                    <select id="serviceCategory" required>
+                        <option value="">Select category</option>
+                        <option value="cleaning">Home Cleaning</option>
+                        <option value="plumbing">Plumbing</option>
+                        <option value="electrical">Electrical</option>
+                        <option value="gardening">Gardening</option>
+                        <option value="carpentry">Carpentry</option>
+                        <option value="painting">Painting</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="serviceDescription">Description</label>
+                    <textarea id="serviceDescription" rows="4" required></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="price">Price (per visit)</label>
+                        <input type="number" id="price" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="duration">Duration (hours)</label>
+                        <input type="number" id="duration" step="0.5" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="availability">Availability</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="days" value="monday"> Monday</label>
+                        <label><input type="checkbox" name="days" value="tuesday"> Tuesday</label>
+                        <label><input type="checkbox" name="days" value="wednesday"> Wednesday</label>
+                        <label><input type="checkbox" name="days" value="thursday"> Thursday</label>
+                        <label><input type="checkbox" name="days" value="friday"> Friday</label>
+                        <label><input type="checkbox" name="days" value="saturday"> Saturday</label>
+                        <label><input type="checkbox" name="days" value="sunday"> Sunday</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary btn-full">Save Service</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/provider.js"></script>
+    <script src="../js/notifications.js"></script>
+</body>
+</html>
