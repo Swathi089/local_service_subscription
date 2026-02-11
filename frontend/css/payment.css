@@ -1,0 +1,170 @@
+/* Payment Page Styles */
+.payment-container {
+    display: grid;
+    gap: 20px;
+}
+
+.payment-methods, .payment-history {
+    background: var(--bg-primary);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+}
+
+.payment-methods h2, .payment-history h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.payment-methods-list {
+    margin-top: 20px;
+}
+
+.payment-method-card {
+    background: var(--bg-secondary);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.payment-method-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.card-icon {
+    font-size: 32px;
+    width: 50px;
+    height: 35px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    box-shadow: var(--shadow-sm);
+}
+
+.card-details h4 {
+    margin-bottom: 5px;
+}
+
+.card-details p {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.card-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 4px;
+    font-size: 11px;
+    margin-left: 10px;
+}
+
+.payment-method-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.btn-icon:hover {
+    background: var(--bg-secondary);
+    color: var(--danger-color);
+}
+
+/* Payment Form */
+.payment-form {
+    display: grid;
+    gap: 20px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 15px;
+}
+
+#cardNumber, #expiryDate, #cvv {
+    font-family: monospace;
+    letter-spacing: 1px;
+}
+
+/* Payment History Table */
+.payment-history .data-table {
+    margin-top: 20px;
+}
+
+/* Payment Status */
+.payment-status {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.payment-completed {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success-color);
+}
+
+.payment-pending {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--warning-color);
+}
+
+.payment-failed {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger-color);
+}
+
+/* Invoice Button */
+.btn-invoice {
+    background: none;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.btn-invoice:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .payment-method-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .payment-method-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}

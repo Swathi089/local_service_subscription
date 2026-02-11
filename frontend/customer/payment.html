@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payments - LocalServe</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/payment.css">
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>LocalServe</h2>
+                <p id="userName">Customer</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span>📊</span> Dashboard
+                </a>
+                <a href="browse-services.html" class="nav-item">
+                    <span>🔍</span> Browse Services
+                </a>
+                <a href="subscriptions.html" class="nav-item">
+                    <span>📋</span> My Subscriptions
+                </a>
+                <a href="payment.html" class="nav-item active">
+                    <span>💳</span> Payments
+                </a>
+                <a href="feedback.html" class="nav-item">
+                    <span>⭐</span> Feedback
+                </a>
+                <a href="profile.html" class="nav-item">
+                    <span>👤</span> Profile
+                </a>
+                <a href="#" class="nav-item" id="logoutBtn">
+                    <span>🚪</span> Logout
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="content-header">
+                <h1>Payments</h1>
+            </header>
+
+            <div class="payment-container">
+                <div class="payment-methods">
+                    <h2>Payment Methods</h2>
+                    <button class="btn-primary" id="addPaymentBtn">Add Payment Method</button>
+                    <div id="paymentMethodsList" class="payment-methods-list">
+                        <!-- Payment methods will be loaded here -->
+                    </div>
+                </div>
+
+                <div class="payment-history">
+                    <h2>Payment History</h2>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Description</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="paymentHistoryTable">
+                                <!-- Payment history will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Payment Method Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add Payment Method</h2>
+            <form id="paymentMethodForm" class="payment-form">
+                <div class="form-group">
+                    <label for="cardName">Name on Card</label>
+                    <input type="text" id="cardName" required>
+                </div>
+                <div class="form-group">
+                    <label for="cardNumber">Card Number</label>
+                    <input type="text" id="cardNumber" maxlength="19" placeholder="1234 5678 9012 3456" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="expiryDate">Expiry Date</label>
+                        <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cvv">CVV</label>
+                        <input type="text" id="cvv" maxlength="3" placeholder="123" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary btn-full">Add Card</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/customer.js"></script>
+    <script src="../js/payment.js"></script>
+    <script src="../js/notifications.js"></script>
+</body>
+</html>

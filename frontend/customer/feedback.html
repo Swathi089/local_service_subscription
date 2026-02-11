@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback - LocalServe</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>LocalServe</h2>
+                <p id="userName">Customer</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span>📊</span> Dashboard
+                </a>
+                <a href="browse-services.html" class="nav-item">
+                    <span>🔍</span> Browse Services
+                </a>
+                <a href="subscriptions.html" class="nav-item">
+                    <span>📋</span> My Subscriptions
+                </a>
+                <a href="payment.html" class="nav-item">
+                    <span>💳</span> Payments
+                </a>
+                <a href="feedback.html" class="nav-item active">
+                    <span>⭐</span> Feedback
+                </a>
+                <a href="profile.html" class="nav-item">
+                    <span>👤</span> Profile
+                </a>
+                <a href="#" class="nav-item" id="logoutBtn">
+                    <span>🚪</span> Logout
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="content-header">
+                <h1>Feedback & Reviews</h1>
+            </header>
+
+            <div class="content-section">
+                <h2>Pending Reviews</h2>
+                <div id="pendingReviewsList" class="reviews-list">
+                    <!-- Pending reviews will be loaded here -->
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Your Reviews</h2>
+                <div id="submittedReviewsList" class="reviews-list">
+                    <!-- Submitted reviews will be loaded here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Review Modal -->
+    <div id="reviewModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Leave a Review</h2>
+            <form id="reviewForm">
+                <div class="form-group">
+                    <label>Rating</label>
+                    <div class="star-rating" id="starRating">
+                        <span class="star" data-rating="1">☆</span>
+                        <span class="star" data-rating="2">☆</span>
+                        <span class="star" data-rating="3">☆</span>
+                        <span class="star" data-rating="4">☆</span>
+                        <span class="star" data-rating="5">☆</span>
+                    </div>
+                    <input type="hidden" id="rating" name="rating" required>
+                </div>
+                <div class="form-group">
+                    <label for="reviewText">Your Review</label>
+                    <textarea id="reviewText" rows="5" required placeholder="Share your experience..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary btn-full">Submit Review</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/customer.js"></script>
+    <script src="../js/notifications.js"></script>
+</body>
+</html>

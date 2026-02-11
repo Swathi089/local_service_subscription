@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Services - LocalServe</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>LocalServe</h2>
+                <p id="userName">Customer</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span>📊</span> Dashboard
+                </a>
+                <a href="browse-services.html" class="nav-item active">
+                    <span>🔍</span> Browse Services
+                </a>
+                <a href="subscriptions.html" class="nav-item">
+                    <span>📋</span> My Subscriptions
+                </a>
+                <a href="payment.html" class="nav-item">
+                    <span>💳</span> Payments
+                </a>
+                <a href="feedback.html" class="nav-item">
+                    <span>⭐</span> Feedback
+                </a>
+                <a href="profile.html" class="nav-item">
+                    <span>👤</span> Profile
+                </a>
+                <a href="#" class="nav-item" id="logoutBtn">
+                    <span>🚪</span> Logout
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="content-header">
+                <h1>Browse Services</h1>
+            </header>
+
+            <div class="filters-section">
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search services...">
+                    <button class="btn-primary">Search</button>
+                </div>
+                <div class="filter-options">
+                    <select id="categoryFilter">
+                        <option value="">All Categories</option>
+                        <option value="cleaning">Home Cleaning</option>
+                        <option value="plumbing">Plumbing</option>
+                        <option value="electrical">Electrical</option>
+                        <option value="gardening">Gardening</option>
+                        <option value="carpentry">Carpentry</option>
+                        <option value="painting">Painting</option>
+                    </select>
+                    <select id="priceFilter">
+                        <option value="">All Prices</option>
+                        <option value="low">Under $50</option>
+                        <option value="medium">$50 - $100</option>
+                        <option value="high">Over $100</option>
+                    </select>
+                    <select id="ratingFilter">
+                        <option value="">All Ratings</option>
+                        <option value="5">5 Stars</option>
+                        <option value="4">4+ Stars</option>
+                        <option value="3">3+ Stars</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="services-grid" id="servicesGrid">
+                <!-- Services will be dynamically loaded here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Service Detail Modal -->
+    <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="serviceDetails"></div>
+        </div>
+    </div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/customer.js"></script>
+    <script src="../js/notifications.js"></script>
+</body>
+</html>

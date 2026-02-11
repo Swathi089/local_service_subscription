@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - LocalServe</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>LocalServe Admin</h2>
+                <p id="userName">Administrator</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item active">
+                    <span>📊</span> Dashboard
+                </a>
+                <a href="manage-users.html" class="nav-item">
+                    <span>👥</span> Manage Users
+                </a>
+                <a href="manage-services.html" class="nav-item">
+                    <span>🔧</span> Manage Services
+                </a>
+                <a href="manage-payments.html" class="nav-item">
+                    <span>💳</span> Manage Payments
+                </a>
+                <a href="reports.html" class="nav-item">
+                    <span>📈</span> Reports
+                </a>
+                <a href="#" class="nav-item" id="logoutBtn">
+                    <span>🚪</span> Logout
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="content-header">
+                <h1>Admin Dashboard</h1>
+            </header>
+
+            <div class="dashboard-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-content">
+                        <h3 id="totalUsers">0</h3>
+                        <p>Total Users</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">🔧</div>
+                    <div class="stat-content">
+                        <h3 id="activeProviders">0</h3>
+                        <p>Active Providers</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">📋</div>
+                    <div class="stat-content">
+                        <h3 id="activeSubscriptions">0</h3>
+                        <p>Active Subscriptions</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-content">
+                        <h3 id="monthlyRevenue">$0</h3>
+                        <p>Monthly Revenue</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Recent Registrations</h2>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentRegistrationsTable">
+                            <tr>
+                                <td colspan="6" class="no-data">No recent registrations</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>System Activity</h2>
+                <div id="systemActivity" class="activity-list">
+                    <p class="no-data">No recent activity</p>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Platform Statistics</h2>
+                <div id="platformChart" class="chart-container">
+                    <!-- Chart will be rendered here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/admin.js"></script>
+    <script src="../js/notifications.js"></script>
+</body>
+</html>

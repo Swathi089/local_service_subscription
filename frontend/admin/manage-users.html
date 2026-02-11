@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users - LocalServe Admin</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>LocalServe Admin</h2>
+                <p id="userName">Administrator</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span>📊</span> Dashboard
+                </a>
+                <a href="manage-users.html" class="nav-item active">
+                    <span>👥</span> Manage Users
+                </a>
+                <a href="manage-services.html" class="nav-item">
+                    <span>🔧</span> Manage Services
+                </a>
+                <a href="manage-payments.html" class="nav-item">
+                    <span>💳</span> Manage Payments
+                </a>
+                <a href="reports.html" class="nav-item">
+                    <span>📈</span> Reports
+                </a>
+                <a href="#" class="nav-item" id="logoutBtn">
+                    <span>🚪</span> Logout
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="content-header">
+                <h1>Manage Users</h1>
+                <div class="header-actions">
+                    <button class="btn-secondary" id="exportUsersBtn">Export Users</button>
+                    <button class="btn-primary" id="addUserBtn">Add User</button>
+                </div>
+            </header>
+
+            <div class="filters-section">
+                <div class="search-bar">
+                    <input type="text" id="searchUsers" placeholder="Search by name, email, or phone...">
+                    <button class="btn-primary">Search</button>
+                </div>
+                <div class="filter-options">
+                    <select id="roleFilter">
+                        <option value="">All Roles</option>
+                        <option value="customer">Customer</option>
+                        <option value="provider">Provider</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                    <select id="statusFilter">
+                        <option value="">All Status</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                        <option value="suspended">Suspended</option>
+                        <option value="pending">Pending</option>
+                    </select>
+                    <select id="sortBy">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="name">Name (A-Z)</option>
+                        <option value="name-desc">Name (Z-A)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-content">
+                        <h3 id="totalUsers">0</h3>
+                        <p>Total Users</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">🛒</div>
+                    <div class="stat-content">
+                        <h3 id="totalCustomers">0</h3>
+                        <p>Customers</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">🔧</div>
+                    <div class="stat-content">
+                        <h3 id="totalProviders">0</h3>
+                        <p>Providers</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">⏳</div>
+                    <div class="stat-content">
+                        <h3 id="pendingApprovals">0</h3>
+                        <p>Pending Approvals</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>User List</h2>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <input type="checkbox" id="selectAll">
+                                </th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th>Joined Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody">
+                            <tr>
+                                <td colspan="8" class="no-data">Loading users...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination" id="pagination">
+                    <button class="btn-secondary" id="prevPage">Previous</button>
+                    <span id="pageInfo">Page 1 of 1</span>
+                    <button class="btn-secondary" id="nextPage">Next</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit User Modal -->
+    <div id="userModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="userModalTitle">Add New User</h2>
+            <form id="userForm" class="profile-form">
+                <input type="hidden" id="userId">
+                
+                <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input type="text" id="fullName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="role">Role *</label>
+                    <select id="role" required>
+                        <option value="">Select role</option>
+                        <option value="customer">Customer</option>
+                        <option value="provider">Provider</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="status">Status *</label>
+                    <select id="status" required>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                        <option value="suspended">Suspended</option>
+                        <option value="pending">Pending</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <textarea id="address" rows="3"></textarea>
+                </div>
+
+                <div id="providerFields" style="display: none;">
+                    <div class="form-group">
+                        <label for="serviceCategory">Service Category</label>
+                        <select id="serviceCategory">
+                            <option value="">Select category</option>
+                            <option value="cleaning">Home Cleaning</option>
+                            <option value="plumbing">Plumbing</option>
+                            <option value="electrical">Electrical</option>
+                            <option value="gardening">Gardening</option>
+                            <option value="carpentry">Carpentry</option>
+                            <option value="painting">Painting</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="experience">Years of Experience</label>
+                        <input type="number" id="experience" min="0">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="notes">Admin Notes</label>
+                    <textarea id="notes" rows="3" placeholder="Internal notes about this user..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary btn-full">Save User</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- View User Details Modal -->
+    <div id="viewUserModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>User Details</h2>
+            <div id="userDetailsContent"></div>
+        </div>
+    </div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/admin.js"></script>
+    <script src="../js/notifications.js"></script>
+    <script>
+        // Additional functionality for manage users page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadUsersPage();
+            setupUserFilters();
+            setupUserModal();
+        });
+
+        function loadUsersPage() {
+            // Mock user data
+            const users = [
+                {
+                    id: 1,
+                    name: 'John Doe',
+                    email: 'john.doe@example.com',
+                    phone: '+1 (555) 123-4567',
+                    role: 'customer',
+                    status: 'active',
+                    joinedDate: '2024-01-15'
+                },
+                {
+                    id: 2,
+                    name: 'Jane Smith',
+                    email: 'jane.smith@example.com',
+                    phone: '+1 (555) 234-5678',
+                    role: 'provider',
+                    status: 'active',
+                    joinedDate: '2024-01-10'
+                },
+                {
+                    id: 3,
+                    name: 'Bob Johnson',
+                    email: 'bob.johnson@example.com',
+                    phone: '+1 (555) 345-6789',
+                    role: 'customer',
+                    status: 'pending',
+                    joinedDate: '2024-01-18'
+                }
+            ];
+
+            // Update stats
+            document.getElementById('totalUsers').textContent = users.length;
+            document.getElementById('totalCustomers').textContent = users.filter(u => u.role === 'customer').length;
+            document.getElementById('totalProviders').textContent = users.filter(u => u.role === 'provider').length;
+            document.getElementById('pendingApprovals').textContent = users.filter(u => u.status === 'pending').length;
+
+            // Populate table
+            const tbody = document.getElementById('usersTableBody');
+            tbody.innerHTML = users.map(user => `
+                <tr>
+                    <td><input type="checkbox" class="user-checkbox" data-id="${user.id}"></td>
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                    <td>${user.phone}</td>
+                    <td><span class="status-badge">${user.role}</span></td>
+                    <td><span class="status-badge status-${user.status}">${user.status}</span></td>
+                    <td>${utils.formatDate(user.joinedDate)}</td>
+                    <td>
+                        <button class="btn-primary" style="padding: 6px 12px; font-size: 12px; margin-right: 5px;" onclick="viewUser(${user.id})">View</button>
+                        <button class="btn-secondary" style="padding: 6px 12px; font-size: 12px; margin-right: 5px;" onclick="editUser(${user.id})">Edit</button>
+                        <button class="btn-icon" style="color: var(--danger-color);" onclick="deleteUser(${user.id})">🗑️</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function setupUserFilters() {
+            const searchInput = document.getElementById('searchUsers');
+            const roleFilter = document.getElementById('roleFilter');
+            const statusFilter = document.getElementById('statusFilter');
+            const sortBy = document.getElementById('sortBy');
+
+            [searchInput, roleFilter, statusFilter, sortBy].forEach(element => {
+                element.addEventListener('change', loadUsersPage);
+            });
+        }
+
+        function setupUserModal() {
+            const addUserBtn = document.getElementById('addUserBtn');
+            const userModal = document.getElementById('userModal');
+            const closeModal = userModal.querySelector('.close');
+            const userForm = document.getElementById('userForm');
+            const roleSelect = document.getElementById('role');
+
+            addUserBtn.addEventListener('click', function() {
+                userModal.classList.add('show');
+                document.getElementById('userModalTitle').textContent = 'Add New User';
+                userForm.reset();
+            });
+
+            closeModal.addEventListener('click', function() {
+                userModal.classList.remove('show');
+            });
+
+            roleSelect.addEventListener('change', function() {
+                const providerFields = document.getElementById('providerFields');
+                if (this.value === 'provider') {
+                    providerFields.style.display = 'block';
+                } else {
+                    providerFields.style.display = 'none';
+                }
+            });
+
+            userForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                window.showNotification('User saved successfully!', 'success');
+                userModal.classList.remove('show');
+                loadUsersPage();
+            });
+        }
+
+        function viewUser(userId) {
+            const viewModal = document.getElementById('viewUserModal');
+            viewModal.classList.add('show');
+            // Load and display user details
+        }
+
+        function editUser(userId) {
+            const userModal = document.getElementById('userModal');
+            userModal.classList.add('show');
+            document.getElementById('userModalTitle').textContent = 'Edit User';
+            // Load user data into form
+        }
+
+        function deleteUser(userId) {
+            if (confirm('Are you sure you want to delete this user?')) {
+                window.showNotification('User deleted successfully!', 'success');
+                loadUsersPage();
+            }
+        }
+    </script>
+</body>
+</html>

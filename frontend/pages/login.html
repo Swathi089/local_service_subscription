@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - LocalServe</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/auth.css">
+</head>
+<body class="auth-page">
+    <div class="auth-container">
+        <div class="auth-box">
+            <div class="auth-header">
+                <h1>LocalServe</h1>
+                <h2>Welcome Back</h2>
+                <p>Login to your account</p>
+            </div>
+
+            <!-- Email Login Form -->
+            <form id="emailForm" class="auth-form">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email">
+                </div>
+
+                <button type="submit" class="btn-primary btn-full" id="sendOtpBtn">
+                    <span id="btnText">Send OTP</span>
+                    <span id="btnLoader" style="display: none;">Sending...</span>
+                </button>
+            </form>
+
+            <!-- OTP Verification Form -->
+            <form id="otpForm" class="auth-form" style="display: none;">
+                <div class="form-message info">
+                    OTP sent to <strong id="sentEmail"></strong>
+                    <button type="button" id="changeEmailBtn" class="link" style="margin-left: 10px;">Change</button>
+                </div>
+
+                <div class="form-group">
+                    <label for="otp">Enter OTP</label>
+                    <div class="otp-input-group">
+                        <input type="text" class="otp-input" maxlength="1" id="otp1" required>
+                        <input type="text" class="otp-input" maxlength="1" id="otp2" required>
+                        <input type="text" class="otp-input" maxlength="1" id="otp3" required>
+                        <input type="text" class="otp-input" maxlength="1" id="otp4" required>
+                        <input type="text" class="otp-input" maxlength="1" id="otp5" required>
+                        <input type="text" class="otp-input" maxlength="1" id="otp6" required>
+                    </div>
+                    <small>OTP expires in <span id="otpTimer">5:00</span></small>
+                </div>
+
+                <button type="submit" class="btn-primary btn-full" id="verifyOtpBtn">
+                    <span id="verifyBtnText">Verify & Login</span>
+                    <span id="verifyBtnLoader" style="display: none;">Verifying...</span>
+                </button>
+
+                <div class="form-options" style="justify-content: center; margin-top: 15px;">
+                    <button type="button" id="resendOtpBtn" class="link" disabled>
+                        Resend OTP <span id="resendTimer">(60s)</span>
+                    </button>
+                </div>
+            </form>
+
+            <div class="divider">
+                <span>OR</span>
+            </div>
+
+            <!-- Google Sign In -->
+            <button class="btn-secondary btn-full" id="googleSignInBtn">
+                <span style="margin-right: 8px;">🔐</span> Sign in with Google
+            </button>
+
+            <div class="auth-footer">
+                <p>Don't have an account? <a href="register.html" class="link">Sign up</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/auth.js"></script>
+</body>
+</html>
